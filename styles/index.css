@@ -1,7 +1,7 @@
 
 
 body.home-page {
-    background-image: linear-gradient( rgba(0,0,0,.55), rgba(0,0,0,.75) ), url("../images/dustBowlRCBackground.jpeg");
+    background-image: linear-gradient( rgba(0,0,0,.55), rgba(0,0,0,.75) ), url("../images/dustBowlRCBackground.png");
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
