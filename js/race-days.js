@@ -8,9 +8,8 @@ async function loadRaceDays() {
 
         const response = await fetch("data/races.json");
 
-        if (!response.ok) {
-            throw new Error("Unable to load raceDays.json");
-        }
+        if (!response.ok)
+            throw new Error(`HTTP ${response.status}`);
 
         const raceDays = await response.json();
 
@@ -19,18 +18,14 @@ async function loadRaceDays() {
         raceDays.forEach(race => {
 
             const option = document.createElement("option");
-
             option.value = race.file;
-
-            option.textContent =
-                `${race.date} - ${race.title}`;
+            option.textContent = `${race.date} - ${race.title}`;
 
             raceDaySelect.appendChild(option);
 
         });
 
-        raceStatus.textContent =
-            `${raceDays.length} race day(s) loaded.`;
+        raceStatus.textContent = `${raceDays.length} race day(s) loaded.`;
 
         viewRaceBtn.disabled = true;
 
@@ -39,21 +34,19 @@ async function loadRaceDays() {
 
         console.error(err);
 
-        raceStatus.textContent =
-            "Unable to load race days.";
+        raceStatus.textContent = err.message;
 
         raceDaySelect.innerHTML =
             '<option value="">No race days found</option>';
 
         viewRaceBtn.disabled = true;
+
     }
 
 }
 
 raceDaySelect.addEventListener("change", () => {
-
     viewRaceBtn.disabled = !raceDaySelect.value;
-
 });
 
 viewRaceBtn.addEventListener("click", () => {
