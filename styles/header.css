@@ -1,0 +1,15 @@
+.site-header{
+padding:25px 35px;
+background:rgba(0,0,0,.35);
+border-bottom:2px solid rgba(255,170,70,.25);
+}
+.logo-area{display:flex;align-items:center;gap:16px;}
+.logo-mark{
+width:60px;height:60px;border-radius:50%;
+display:grid;place-items:center;
+font-size:24px;font-weight:bold;
+background:#d66a1f;color:#1d0d04;
+box-shadow:0 0 20px rgba(214,106,31,.5);
+}
+h1{margin:0;}
+.site-header p{margin:4px 0 0;color:#d9bf96;}

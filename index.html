@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dust Bowl RC</title>
+<link rel="stylesheet" href="styles/main.css">
+<link rel="stylesheet" href="styles/header.css">
+<link rel="stylesheet" href="styles/index.css">
+</head>
+<body>
+<header class="site-header">
+<div class="logo-area">
+<div class="logo-mark">DB</div>
+<div>
+<h1>Dust Bowl RC Club</h1>
+<p>Race results, chaos, glory, and bad decisions.</p>
+</div>
+</div>
+</header>
+
+<main class="home-wrapper">
+<section class="hero-card">
+<div class="dust-badge">DUSTY AS EVER</div>
+<h2>Pick a Race Day</h2>
+<p class="hero-text">
+Select a race day below. Later this list will load automatically from Google Sheets.
+</p>
+
+<div class="race-picker-box">
+<label for="raceDaySelect">Race Day</label>
+<select id="raceDaySelect">
+<option>Loading...</option>
+</select>
+
+<button id="viewRaceBtn" disabled>View Race</button>
+</div>
+
+<p id="raceStatus" class="race-status"></p>
+</section>
+
+<section class="info-grid">
+<div class="info-card">
+<h3>Google Sheets</h3>
+<p>Future home of race schedule.</p>
+</div>
+
+<div class="info-card">
+<h3>Results</h3>
+<p>Each race can have its own JSON file.</p>
+</div>
+
+<div class="info-card">
+<h3>Funny UI</h3>
+<p>The next page can have awards, podiums, lap charts and more.</p>
+</div>
+</section>
+</main>
+
+<script src="js/race-days.js"></script>
+</body>
+</html>

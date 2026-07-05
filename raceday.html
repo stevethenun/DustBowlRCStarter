@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dust Bowl RC - Race Day</title>
+
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/header.css">
+    <link rel="stylesheet" href="styles/raceday.css">
+
+</head>
+
+<body>
+
+    <header class="site-header">
+
+        <div class="logo-area">
+
+            <div class="logo-mark">DB</div>
+
+            <div>
+                <h1 id="raceTitle">Freedom Bash</h1>
+                <p id="raceDate">July 4, 2026</p>
+            </div>
+
+        </div>
+
+    </header>
+
+    <main class="page">
+
+        <section class="hero">
+
+            <h2>🏁 Race Results</h2>
+
+            <p id="raceDescription">
+                Dust Bowl RC Club
+            </p>
+
+        </section>
+
+        <section class="podium">
+
+            <div class="podium-card second">
+                <div class="place">🥈</div>
+                <div class="driver" id="secondPlace">Loading...</div>
+            </div>
+
+            <div class="podium-card first">
+                <div class="place">🥇</div>
+                <div class="driver" id="firstPlace">Loading...</div>
+            </div>
+
+            <div class="podium-card third">
+                <div class="place">🥉</div>
+                <div class="driver" id="thirdPlace">Loading...</div>
+            </div>
+
+        </section>
+
+        <section class="classSelector">
+
+            <h2>Class</h2>
+
+            <select id="classSelect">
+            </select>
+
+        </section>
+
+        <section class="resultsCard">
+
+            <h2>Heat Results</h2>
+
+            <table id="heatTable">
+
+                <thead>
+
+                    <tr>
+
+                        <th>#</th>
+                        <th>Driver</th>
+                        <th>Laps</th>
+                        <th>Best Lap</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+                </tbody>
+
+            </table>
+
+        </section>
+
+        <section class="resultsCard">
+
+            <h2>Main Results</h2>
+
+            <table id="mainTable">
+
+                <thead>
+
+                    <tr>
+
+                        <th>#</th>
+                        <th>Driver</th>
+                        <th>Laps</th>
+                        <th>Best Lap</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+                </tbody>
+
+            </table>
+
+        </section>
+
+        <section class="stats">
+
+            <div class="statCard">
+
+                <h3>⚡ Fastest Lap</h3>
+
+                <h1 id="fastLap">
+                    --
+                </h1>
+
+                <p id="fastDriver">
+                    --
+                </p>
+
+            </div>
+
+            <div class="statCard">
+
+                <h3>🏆 Winner</h3>
+
+                <h1 id="winner">
+                    --
+                </h1>
+
+            </div>
+
+            <div class="statCard">
+
+                <h3>👥 Drivers</h3>
+
+                <h1 id="driverCount">
+                    0
+                </h1>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="js/raceday.js"></script>
+
+</body>
+
+</html>
