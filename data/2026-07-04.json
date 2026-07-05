@@ -1,0 +1,92 @@
+{
+  "deviceName": "pa2q",
+  "version": "2.12",
+  "deviceUuid": "485871da-4cfb-4d24-8a72-cc0f6cc576ec",
+  "documentType": "com.gyfx.LapMonitor.raceJsonData",
+  "races": [
+    {
+      "name": "Merica250open",
+      "extraTime": 60000,
+      "info": "",
+      "uuid": "d122eb97-0d23-409e-b09e-ae899128cba5",
+      "date": "2026-07-04T14:23:22.414-05:00",
+      "duration": 10,
+      "durationType": "laps",
+      "minLapTime": 32000,
+      "kind": "race",
+      "drivers": [
+        {
+          "kind": "driver",
+          "name": "gearhead ",
+          "driverUuid": "c7eced05-becf-4690-a395-5277865d6855",
+          "transponderId": 34,
+          "laps": [
+            {
+              "endTimestamp": 217480,
+              "lapId": 11,
+              "kind": "normal"
+            },
+            {
+              "endTimestamp": 176880,
+              "lapId": 9,
+              "kind": "normal"
+            },
+            {
+              "endTimestamp": 133900,
+              "lapId": 7,
+              "kind": "normal"
+            },
+            {
+              "endTimestamp": 91190,
+              "lapId": 6,
+              "kind": "normal"
+            },
+            {
+              "endTimestamp": 45970,
+              "lapId": 4,
+              "kind": "normal"
+            },
+            {
+              "endTimestamp": 2310,
+              "lapId": 1,
+              "kind": "normal"
+            }
+          ]
+        },
+        {
+          "kind": "driver",
+          "name": "mechtim",
+          "driverUuid": "1786c876-a37c-49f4-9888-7fafa491097c",
+          "transponderId": 16,
+          "laps": [
+            {
+              "endTimestamp": 182080,
+              "lapId": 10,
+              "kind": "normal"
+            },
+            {
+              "endTimestamp": 135840,
+              "lapId": 8,
+              "kind": "normal"
+            },
+            {
+              "endTimestamp": 87300,
+              "lapId": 5,
+              "kind": "normal"
+            },
+            {
+              "endTimestamp": 44280,
+              "lapId": 3,
+              "kind": "normal"
+            },
+            {
+              "endTimestamp": 4260,
+              "lapId": 2,
+              "kind": "normal"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
