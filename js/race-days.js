@@ -1,3 +1,9 @@
+// =====================================================
+// Dust Bowl RC - Home Page
+// Loads available race days from:
+// data/races.json
+// =====================================================
+
 const raceDaySelect = document.getElementById("raceDaySelect");
 const viewRaceBtn = document.getElementById("viewRaceBtn");
 const raceStatus = document.getElementById("raceStatus");
@@ -6,18 +12,24 @@ async function loadRaceDays() {
 
     try {
 
-        const response = await fetch("data/races.json");
+        const response = await fetch("data/races.json", { cache: "no-cache" });
 
-        if (!response.ok)
-            throw new Error(`HTTP ${response.status}`);
+        if (!response.ok) {
+            throw new Error(`Unable to load races.json (HTTP ${response.status})`);
+        }
 
         const raceDays = await response.json();
 
-        raceDaySelect.innerHTML = '<option value="">Select a race day...</option>';
+        if (!Array.isArray(raceDays) || raceDays.length === 0) {
+            throw new Error("No race days found.");
+        }
+
+        raceDaySelect.innerHTML = "";
 
         raceDays.forEach(race => {
 
             const option = document.createElement("option");
+
             option.value = race.file;
             option.textContent = `${race.date} - ${race.title}`;
 
@@ -25,19 +37,23 @@ async function loadRaceDays() {
 
         });
 
-        raceStatus.textContent = `${raceDays.length} race day(s) loaded.`;
+        // Select the newest race by default
+        raceDaySelect.selectedIndex = 0;
 
-        viewRaceBtn.disabled = true;
+        viewRaceBtn.disabled = false;
+
+        raceStatus.textContent =
+            `${raceDays.length} race day${raceDays.length === 1 ? "" : "s"} available.`;
 
     }
     catch (err) {
 
         console.error(err);
 
-        raceStatus.textContent = err.message;
-
         raceDaySelect.innerHTML =
-            '<option value="">No race days found</option>';
+            `<option value="">No race days found</option>`;
+
+        raceStatus.textContent = err.message;
 
         viewRaceBtn.disabled = true;
 
@@ -46,16 +62,19 @@ async function loadRaceDays() {
 }
 
 raceDaySelect.addEventListener("change", () => {
-    viewRaceBtn.disabled = !raceDaySelect.value;
+
+    viewRaceBtn.disabled = raceDaySelect.value === "";
+
 });
 
 viewRaceBtn.addEventListener("click", () => {
 
-    if (!raceDaySelect.value)
+    const file = raceDaySelect.value;
+
+    if (!file)
         return;
 
-    window.location.href =
-        `raceday.html?file=${encodeURIComponent(raceDaySelect.value)}`;
+    window.location.href = `raceday.html?file=${encodeURIComponent(file)}`;
 
 });
 
