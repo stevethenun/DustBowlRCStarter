@@ -1,63 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dust Bowl RC</title>
-<link rel="stylesheet" href="styles/main.css">
-<link rel="stylesheet" href="styles/header.css">
-<link rel="stylesheet" href="styles/index.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dust Bowl RC Club</title>
+
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/header.css">
+    <link rel="stylesheet" href="styles/index.css">
+
 </head>
+
 <body class="home-page"
       style="background:url('images/dustBowlRCBackground.png') center center / cover no-repeat fixed;">
+
     <header class="site-header">
+
         <div class="logo-area">
+
             <div class="logo-mark">DB</div>
+
             <div>
+
                 <h1>Dust Bowl RC Club</h1>
-                <p>Race results, chaos, glory, and bad decisions.</p>
+
+                <p>
+                    Race Results • Standings • Lap Times
+                </p>
+
             </div>
+
         </div>
+
     </header>
 
     <main class="home-wrapper">
+
         <section class="hero-card">
-            <div class="dust-badge">DUSTY AS EVER</div>
-            <h2>Pick a Race Day</h2>
+
+            <div class="dust-badge">
+                DUSTY AS EVER
+            </div>
+
+            <h2>
+                Race Results
+            </h2>
+
             <p class="hero-text">
-                Select a race day below. Later this list will load automatically from Google Sheets.
+
+                Select a race day to view the complete race results,
+                podium finishers, lap times and driver statistics.
+
             </p>
 
             <div class="race-picker-box">
-                <label for="raceDaySelect">Race Day</label>
+
+                <label for="raceDaySelect">
+
+                    Race Day
+
+                </label>
+
                 <select id="raceDaySelect">
-                    <option>Loading...</option>
+
+                    <option value="">
+                        Loading race days...
+                    </option>
+
                 </select>
 
-                <button id="viewRaceBtn" disabled>View Race</button>
+                <button id="viewRaceBtn" disabled>
+
+                    View Results
+
+                </button>
+
             </div>
 
-            <p id="raceStatus" class="race-status"></p>
+            <p id="raceStatus" class="race-status">
+
+                Loading available race days...
+
+            </p>
+
         </section>
 
         <section class="info-grid">
+
             <div class="info-card">
-                <h3>Google Sheets</h3>
-                <p>Future home of race schedule.</p>
+
+                <h3>
+                    🏁 Race Results
+                </h3>
+
+                <p>
+
+                    Complete finishing order for every class from race day.
+
+                </p>
+
             </div>
 
             <div class="info-card">
-                <h3>Results</h3>
-                <p>Each race can have its own JSON file.</p>
+
+                <h3>
+                    ⏱ Lap Times
+                </h3>
+
+                <p>
+
+                    View every lap, fastest lap, averages and race statistics.
+
+                </p>
+
             </div>
 
             <div class="info-card">
-                <h3>Funny UI</h3>
-                <p>The next page can have awards, podiums, lap charts and more.</p>
+
+                <h3>
+                    🏆 Driver Stats
+                </h3>
+
+                <p>
+
+                    Automatically calculated from the race timer JSON export.
+
+                </p>
+
             </div>
+
         </section>
+
     </main>
 
     <script src="js/race-days.js"></script>
+
 </body>
+
 </html>

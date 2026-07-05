@@ -14,7 +14,7 @@
 
 </head>
 
-<body>
+<body class="raceday-page">
 
     <header class="site-header">
 
@@ -23,8 +23,8 @@
             <div class="logo-mark">DB</div>
 
             <div>
-                <h1 id="raceTitle">Freedom Bash</h1>
-                <p id="raceDate">July 4, 2026</p>
+                <h1>Dust Bowl RC Club</h1>
+                <p id="raceDayDate">Loading...</p>
             </div>
 
         </div>
@@ -35,95 +35,78 @@
 
         <section class="hero">
 
-            <h2>🏁 Race Results</h2>
+            <h2 id="raceName">Loading Race...</h2>
 
             <p id="raceDescription">
-                Dust Bowl RC Club
+                Loading race information...
             </p>
+
+        </section>
+
+        <section class="classSelector">
+
+            <div class="classHeader">
+
+                <div>
+
+                    <h2>Race / Class</h2>
+
+                    <p>Select a race from this race day.</p>
+
+                </div>
+
+                <select id="classSelect">
+                </select>
+
+            </div>
 
         </section>
 
         <section class="podium">
 
             <div class="podium-card second">
+
                 <div class="place">🥈</div>
-                <div class="driver" id="secondPlace">Loading...</div>
+
+                <div class="driver" id="secondPlace">
+                    --
+                </div>
+
             </div>
 
             <div class="podium-card first">
+
                 <div class="place">🥇</div>
-                <div class="driver" id="firstPlace">Loading...</div>
+
+                <div class="driver" id="firstPlace">
+                    --
+                </div>
+
             </div>
 
             <div class="podium-card third">
+
                 <div class="place">🥉</div>
-                <div class="driver" id="thirdPlace">Loading...</div>
+
+                <div class="driver" id="thirdPlace">
+                    --
+                </div>
+
             </div>
-
-        </section>
-
-        <section class="classSelector">
-
-            <h2>Class</h2>
-
-            <select id="classSelect">
-            </select>
-
-        </section>
-
-        <section class="resultsCard">
-
-            <h2>Heat Results</h2>
-
-            <table id="heatTable">
-
-                <thead>
-
-                    <tr>
-
-                        <th>#</th>
-                        <th>Driver</th>
-                        <th>Laps</th>
-                        <th>Best Lap</th>
-
-                    </tr>
-
-                </thead>
-
-                <tbody>
-                </tbody>
-
-            </table>
-
-        </section>
-
-        <section class="resultsCard">
-
-            <h2>Main Results</h2>
-
-            <table id="mainTable">
-
-                <thead>
-
-                    <tr>
-
-                        <th>#</th>
-                        <th>Driver</th>
-                        <th>Laps</th>
-                        <th>Best Lap</th>
-
-                    </tr>
-
-                </thead>
-
-                <tbody>
-                </tbody>
-
-            </table>
 
         </section>
 
         <section class="stats">
+
+            <div class="statCard">
+
+                <h3>🏆 Winner</h3>
+
+                <h1 id="winner">
+                    --
+                </h1>
+
+            </div>
 
             <div class="statCard">
 
@@ -141,21 +124,61 @@
 
             <div class="statCard">
 
-                <h3>🏆 Winner</h3>
+                <h3>👥 Drivers</h3>
 
-                <h1 id="winner">
-                    --
+                <h1 id="driverCount">
+                    0
                 </h1>
 
             </div>
 
             <div class="statCard">
 
-                <h3>👥 Drivers</h3>
+                <h3>🏁 Race Length</h3>
 
-                <h1 id="driverCount">
-                    0
+                <h1 id="raceLength">
+                    --
                 </h1>
+
+            </div>
+
+        </section>
+
+        <section class="resultsCard">
+
+            <h2>Leaderboard</h2>
+
+            <table id="heatTable">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Pos</th>
+                        <th>Driver</th>
+                        <th>Laps</th>
+                        <th>Best Lap</th>
+                        <th>Average</th>
+                        <th>Total Time</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+                </tbody>
+
+            </table>
+
+        </section>
+
+        <section class="resultsCard">
+
+            <h2>Driver Lap Times</h2>
+
+            <div id="lapTimes">
+
+                Select a driver above to view their lap times.
 
             </div>
 
