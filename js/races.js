@@ -101,18 +101,23 @@ function buildStandings(race) {
         const sortedLaps = [...(driver.laps || [])]
             .sort((a, b) => a.endTimestamp - b.endTimestamp);
 
-        const calculatedLaps = sortedLaps.map((lap, index) => {
-            const previousTimestamp = index === 0 ? 0 : sortedLaps[index - 1].endTimestamp;
-            const lapTime = lap.endTimestamp - previousTimestamp;
+        const calculatedLaps = sortedLaps
+            .map((lap, index) => {
 
-            return {
-                lapNumber: index + 1,
-                lapId: lap.lapId,
-                endTimestamp: lap.endTimestamp,
-                lapTime: lapTime,
-                kind: lap.kind
-            };
-        });
+                const previousTimestamp =
+                    index === 0 ? 0 : sortedLaps[index - 1].endTimestamp;
+
+                return {
+                    lapNumber: index + 1,
+                    lapId: lap.lapId,
+                    endTimestamp: lap.endTimestamp,
+                    lapTime: lap.endTimestamp - previousTimestamp,
+                    kind: lap.kind
+                };
+
+            })
+            // Ignore the launch lap
+            .filter((lap, index) => index > 0);
 
         const validLapTimes = calculatedLaps
             .map(lap => lap.lapTime)
