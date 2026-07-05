@@ -6,7 +6,7 @@ async function loadRaceDays() {
 
     try {
 
-        const response = await fetch("data/raceDays.json");
+        const response = await fetch("data/race-days.json");
 
         if (!response.ok) {
             throw new Error("Unable to load raceDays.json");
