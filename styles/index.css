@@ -1,3 +1,14 @@
+
+
+body.home-page {
+    background-image: linear-gradient( rgba(0,0,0,.55), rgba(0,0,0,.75) ), url("../images/dustBowlRCBackground.jpeg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
 .home-wrapper{width:min(1100px,92%);margin:40px auto;}
 .hero-card{
 padding:40px;border-radius:20px;
