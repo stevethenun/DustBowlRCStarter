@@ -1,7 +1,10 @@
-
+/* ==========================================================
+   HOME PAGE
+========================================================== */
 
 body.home-page {
-    background-image: linear-gradient( rgba(0,0,0,.55), rgba(0,0,0,.75) ), url("../images/dustBowlRCBackground.png");
+    margin: 0;
+    background: linear-gradient( rgba(0,0,0,.45), rgba(0,0,0,.70) ), url("../images/dustBowlRCBackground.png");
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -9,57 +12,158 @@ body.home-page {
     min-height: 100vh;
 }
 
-.home-wrapper{width:min(1100px,92%);margin:40px auto;}
-.hero-card{
-padding:40px;border-radius:20px;
-background:rgba(25,15,8,.8);
-border:1px solid rgba(255,180,90,.25);
+
+/* ==========================================================
+   MAIN LAYOUT
+========================================================== */
+
+.home-wrapper {
+    width: min(1100px,92%);
+    margin: 50px auto;
 }
-.dust-badge{
-display:inline-block;
-padding:8px 14px;
-background:#6d3d12;
-border-radius:999px;
-font-weight:bold;
+
+
+/* ==========================================================
+   HERO CARD
+========================================================== */
+
+.hero-card {
+    padding: 45px;
+    border-radius: 22px;
+    background: rgba(20,12,6,.82);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,180,90,.30);
+    box-shadow: 0 20px 45px rgba(0,0,0,.45);
 }
-.hero-card h2{font-size:56px;margin:20px 0 10px;}
-.hero-text{max-width:700px;line-height:1.6;}
-.race-picker-box{
-display:grid;
-grid-template-columns:1fr auto;
-gap:15px;
-max-width:650px;
-margin-top:30px;
+
+
+.dust-badge {
+    display: inline-block;
+    padding: 8px 18px;
+    border-radius: 999px;
+    background: #8a4c16;
+    color: white;
+    font-weight: bold;
+    letter-spacing: 1px;
 }
-.race-picker-box label{grid-column:1/-1;}
-select{
-padding:15px;
-border-radius:10px;
-background:#120b06;
-color:white;
-border:1px solid #7d4a1e;
+
+
+.hero-card h2 {
+    font-size: clamp(42px,7vw,72px);
+    margin: 25px 0 15px;
 }
-button{
-padding:15px 25px;
-border:none;
-border-radius:10px;
-background:#d66a1f;
-font-weight:bold;
-cursor:pointer;
+
+
+.hero-text {
+    max-width: 700px;
+    line-height: 1.6;
+    font-size: 20px;
 }
-button:disabled{opacity:.4;}
-.info-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:20px;
-margin-top:30px;
+
+
+/* ==========================================================
+   RACE PICKER
+========================================================== */
+
+.race-picker-box {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 18px;
+    max-width: 700px;
+    margin-top: 35px;
 }
-.info-card{
-padding:20px;
-border-radius:15px;
-background:rgba(0,0,0,.3);
+
+
+    .race-picker-box label {
+        grid-column: 1/-1;
+        font-weight: bold;
+    }
+
+
+select {
+    padding: 16px;
+    border-radius: 12px;
+    background: #120b06;
+    color: white;
+    border: 1px solid #b56a27;
 }
-@media(max-width:800px){
-.info-grid{grid-template-columns:1fr;}
-.race-picker-box{grid-template-columns:1fr;}
+
+
+button {
+    padding: 16px 28px;
+    border: none;
+    border-radius: 12px;
+    background: #d66a1f;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .25s;
+}
+
+
+    button:hover {
+        background: #f2872d;
+    }
+
+
+    button:disabled {
+        opacity: .45;
+        cursor: not-allowed;
+    }
+
+
+/* ==========================================================
+   INFO CARDS
+========================================================== */
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 25px;
+    margin-top: 35px;
+}
+
+
+.info-card {
+    padding: 25px;
+    border-radius: 18px;
+    background: rgba(20,12,6,.82);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,180,90,.18);
+    box-shadow: 0 15px 35px rgba(0,0,0,.35);
+}
+
+
+    .info-card h3 {
+        margin-top: 0;
+    }
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width:900px) {
+
+    body.home-page {
+        background-attachment: scroll;
+        background-position: center center;
+    }
+
+    .home-wrapper {
+        width: 95%;
+        margin: 25px auto;
+    }
+
+    .hero-card {
+        padding: 25px;
+    }
+
+    .race-picker-box {
+        grid-template-columns: 1fr;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
 }
