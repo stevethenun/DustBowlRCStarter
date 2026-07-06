@@ -95,67 +95,85 @@ function renderRace(index) {
 }
 
 function buildStandings(race) {
-    const drivers = race.drivers || [];
 
-    const standings = drivers.map(driver => {
-        const sortedLaps = [...(driver.laps || [])]
+    const standings = [];
+
+    (race.drivers || []).forEach(driver => {
+
+        const laps = [...driver.laps]
             .sort((a, b) => a.endTimestamp - b.endTimestamp);
 
-        const calculatedLaps = sortedLaps
-            .map((lap, index) => {
+        const displayLaps = [];
+        const validLapTimes = [];
 
-                const previousTimestamp =
-                    index === 0 ? 0 : sortedLaps[index - 1].endTimestamp;
+        for (let i = 0; i < laps.length; i++) {
 
-                return {
-                    lapNumber: index + 1,
-                    lapId: lap.lapId,
-                    endTimestamp: lap.endTimestamp,
-                    lapTime: lap.endTimestamp - previousTimestamp,
-                    kind: lap.kind
-                };
+            const current = laps[i];
 
-            })
+            const previousTime =
+                i === 0 ? 0 : laps[i - 1].endTimestamp;
+
+            const lapTime =
+                current.endTimestamp - previousTime;
+
+            displayLaps.push({
+                lapNumber: i + 1,
+                endTimestamp: current.endTimestamp,
+                lapTime: lapTime,
+                kind: current.kind
+            });
+
             // Ignore the launch lap
-            .filter((lap, index) => index > 0);
+            if (i > 0) {
+                validLapTimes.push(lapTime);
+            }
 
-        const validLapTimes = calculatedLaps
-            .map(lap => lap.lapTime)
-            .filter(time => time > 0);
+        }
 
-        const lapCount = calculatedLaps.length;
-        const totalTime = sortedLaps.length > 0
-            ? sortedLaps[sortedLaps.length - 1].endTimestamp
-            : 0;
+        const bestLap =
+            validLapTimes.length
+                ? Math.min(...validLapTimes)
+                : null;
 
-        const bestLap = validLapTimes.length > 0
-            ? Math.min(...validLapTimes)
-            : null;
+        const averageLap =
+            validLapTimes.length
+                ? validLapTimes.reduce((a, b) => a + b, 0) / validLapTimes.length
+                : null;
 
-        const averageLap = validLapTimes.length > 0
-            ? validLapTimes.reduce((sum, time) => sum + time, 0) / validLapTimes.length
-            : null;
+        standings.push({
 
-        return {
             name: cleanName(driver.name),
+
             transponderId: driver.transponderId,
-            lapCount,
-            totalTime,
-            bestLap,
-            averageLap,
-            laps: calculatedLaps
-        };
+
+            lapCount: laps.length,
+
+            totalTime:
+                laps.length
+                    ? laps[laps.length - 1].endTimestamp
+                    : 0,
+
+            bestLap: bestLap,
+
+            averageLap: averageLap,
+
+            laps: displayLaps
+
+        });
+
     });
 
     standings.sort((a, b) => {
-        if (b.lapCount !== a.lapCount) {
+
+        if (b.lapCount !== a.lapCount)
             return b.lapCount - a.lapCount;
-        }
 
         return a.totalTime - b.totalTime;
+
     });
 
     return standings;
+
 }
 
 function renderPodium(standings) {
