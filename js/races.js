@@ -233,18 +233,24 @@ function renderLapTimes(standings) {
 }
 
 function renderSingleDriverLapTimes(driver) {
-    const lapRows = driver.laps.map(lap => {
-        const isBestLap = lap.lapTime === driver.bestLap;
 
-        return `
-            <tr class="${isBestLap ? "best-lap-row" : ""}">
-                <td>${lap.lapNumber}</td>
-                <td>${formatTime(lap.lapTime)}</td>
-                <td>${formatTime(lap.endTimestamp)}</td>
-                <td>${lap.kind || ""}</td>
-            </tr>
-        `;
-    }).join("");
+    const lapRows = driver.laps
+        .filter(lap => lap.lapNumber > 1)
+        .map(lap => {
+
+            const isBestLap = lap.lapTime === driver.bestLap;
+
+            return `
+                <tr class="${isBestLap ? "best-lap-row" : ""}">
+                    <td>${lap.lapNumber - 1}</td>
+                    <td>${formatTime(lap.lapTime)}</td>
+                    <td>${formatTime(lap.endTimestamp)}</td>
+                    <td>${lap.kind || ""}</td>
+                </tr>
+            `;
+
+        })
+        .join("");
 
     lapTimes.innerHTML = `
         <h3>${escapeHtml(driver.name)} Lap Times</h3>
@@ -258,12 +264,12 @@ function renderSingleDriverLapTimes(driver) {
                     <th>Type</th>
                 </tr>
             </thead>
-
             <tbody>
                 ${lapRows}
             </tbody>
         </table>
     `;
+
 }
 
     function findFastestLap(standings) {
