@@ -223,7 +223,9 @@ function renderLeaderboard(standings) {
 
 function renderLapTimes(standings) {
     if (!standings.length) {
-        lapTimes.innerHTML = "No lap data found.";
+        const lapRows = driver.laps
+            .filter(lap => lap.lapNumber > 1)
+            .map(lap => {
         return;
     }
 
