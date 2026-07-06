@@ -146,7 +146,7 @@ function buildStandings(race) {
 
             transponderId: driver.transponderId,
 
-            lapCount: laps.length,
+            lapCount: validLapTimes.length,
 
             totalTime:
                 laps.length
