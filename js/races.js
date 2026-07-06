@@ -266,26 +266,37 @@ function renderSingleDriverLapTimes(driver) {
     `;
 }
 
-function findFastestLap(standings) {
-    let fastest = null;
+    function findFastestLap(standings) {
 
-    standings.forEach(driver => {
-        driver.laps.forEach(lap => {
-            if (lap.lapTime <= 0) {
-                return;
-            }
+        let fastest = null;
 
-            if (!fastest || lap.lapTime < fastest.lapTime) {
-                fastest = {
-                    driverName: driver.name,
-                    lapTime: lap.lapTime
-                };
-            }
+        standings.forEach(driver => {
+
+            driver.laps.forEach(lap => {
+
+                // Ignore the launch lap
+                if (lap.lapNumber === 1)
+                    return;
+
+                if (lap.lapTime <= 0)
+                    return;
+
+                if (!fastest || lap.lapTime < fastest.lapTime) {
+
+                    fastest = {
+                        driverName: driver.name,
+                        lapTime: lap.lapTime
+                    };
+
+                }
+
+            });
+
         });
-    });
 
-    return fastest;
-}
+        return fastest;
+
+    }
 
 function formatTime(ms) {
     if (ms === null || ms === undefined || !Number.isFinite(ms)) {
