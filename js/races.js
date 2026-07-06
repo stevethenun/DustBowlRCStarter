@@ -95,62 +95,85 @@ function renderRace(index) {
 }
 
 function buildStandings(race) {
-    const drivers = race.drivers || [];
 
-    const standings = drivers.map(driver => {
-        const sortedLaps = [...(driver.laps || [])]
+    const standings = [];
+
+    (race.drivers || []).forEach(driver => {
+
+        const laps = [...driver.laps]
             .sort((a, b) => a.endTimestamp - b.endTimestamp);
 
-        const calculatedLaps = sortedLaps.map((lap, index) => {
-            const previousTimestamp = index === 0 ? 0 : sortedLaps[index - 1].endTimestamp;
-            const lapTime = lap.endTimestamp - previousTimestamp;
+        const displayLaps = [];
+        const validLapTimes = [];
 
-            return {
-                lapNumber: index + 1,
-                lapId: lap.lapId,
-                endTimestamp: lap.endTimestamp,
+        for (let i = 0; i < laps.length; i++) {
+
+            const current = laps[i];
+
+            const previousTime =
+                i === 0 ? 0 : laps[i - 1].endTimestamp;
+
+            const lapTime =
+                current.endTimestamp - previousTime;
+
+            displayLaps.push({
+                lapNumber: i + 1,
+                endTimestamp: current.endTimestamp,
                 lapTime: lapTime,
-                kind: lap.kind
-            };
+                kind: current.kind
+            });
+
+            // Ignore the launch lap
+            if (i > 0) {
+                validLapTimes.push(lapTime);
+            }
+
+        }
+
+        const bestLap =
+            validLapTimes.length
+                ? Math.min(...validLapTimes)
+                : null;
+
+        const averageLap =
+            validLapTimes.length
+                ? validLapTimes.reduce((a, b) => a + b, 0) / validLapTimes.length
+                : null;
+
+        standings.push({
+
+            name: cleanName(driver.name),
+
+            transponderId: driver.transponderId,
+
+            lapCount: validLapTimes.length,
+
+            totalTime:
+                laps.length
+                    ? laps[laps.length - 1].endTimestamp
+                    : 0,
+
+            bestLap: bestLap,
+
+            averageLap: averageLap,
+
+            laps: displayLaps
+
         });
 
-        const validLapTimes = calculatedLaps
-            .map(lap => lap.lapTime)
-            .filter(time => time > 0);
-
-        const lapCount = calculatedLaps.length;
-        const totalTime = sortedLaps.length > 0
-            ? sortedLaps[sortedLaps.length - 1].endTimestamp
-            : 0;
-
-        const bestLap = validLapTimes.length > 0
-            ? Math.min(...validLapTimes)
-            : null;
-
-        const averageLap = validLapTimes.length > 0
-            ? validLapTimes.reduce((sum, time) => sum + time, 0) / validLapTimes.length
-            : null;
-
-        return {
-            name: cleanName(driver.name),
-            transponderId: driver.transponderId,
-            lapCount,
-            totalTime,
-            bestLap,
-            averageLap,
-            laps: calculatedLaps
-        };
     });
 
     standings.sort((a, b) => {
-        if (b.lapCount !== a.lapCount) {
+
+        if (b.lapCount !== a.lapCount)
             return b.lapCount - a.lapCount;
-        }
 
         return a.totalTime - b.totalTime;
+
     });
 
     return standings;
+
 }
 
 function renderPodium(standings) {
@@ -199,27 +222,34 @@ function renderLeaderboard(standings) {
 }
 
 function renderLapTimes(standings) {
+
     if (!standings.length) {
         lapTimes.innerHTML = "No lap data found.";
         return;
     }
 
     renderSingleDriverLapTimes(standings[0]);
+
 }
 
 function renderSingleDriverLapTimes(driver) {
-    const lapRows = driver.laps.map(lap => {
-        const isBestLap = lap.lapTime === driver.bestLap;
 
-        return `
-            <tr class="${isBestLap ? "best-lap-row" : ""}">
-                <td>${lap.lapNumber}</td>
-                <td>${formatTime(lap.lapTime)}</td>
-                <td>${formatTime(lap.endTimestamp)}</td>
-                <td>${lap.kind || ""}</td>
-            </tr>
-        `;
-    }).join("");
+    const lapRows = driver.laps
+        .filter(lap => lap.lapNumber > 1)
+        .map(lap => {
+
+            const isBestLap = lap.lapTime === driver.bestLap;
+
+            return `
+                <tr class="${isBestLap ? "best-lap-row" : ""}">
+                    <td>${lap.lapNumber - 1}</td>
+                    <td>${formatTime(lap.lapTime)}</td>
+                    <td>${formatTime(lap.endTimestamp)}</td>
+                    <td>${lap.kind || ""}</td>
+                </tr>
+            `;
+        })
+        .join("");
 
     lapTimes.innerHTML = `
         <h3>${escapeHtml(driver.name)} Lap Times</h3>
@@ -233,34 +263,40 @@ function renderSingleDriverLapTimes(driver) {
                     <th>Type</th>
                 </tr>
             </thead>
-
             <tbody>
                 ${lapRows}
             </tbody>
         </table>
     `;
+
 }
 
-function findFastestLap(standings) {
-    let fastest = null;
+    function findFastestLap(standings) {
+        let fastest = null;
 
-    standings.forEach(driver => {
-        driver.laps.forEach(lap => {
-            if (lap.lapTime <= 0) {
-                return;
-            }
+        standings.forEach(driver => {
+            driver.laps.forEach(lap => {
 
-            if (!fastest || lap.lapTime < fastest.lapTime) {
-                fastest = {
-                    driverName: driver.name,
-                    lapTime: lap.lapTime
-                };
-            }
+                if (lap.lapNumber === 1) {
+                    return;
+                }
+
+                if (lap.lapTime <= 0) {
+                    return;
+                }
+
+                if (!fastest || lap.lapTime < fastest.lapTime) {
+                    fastest = {
+                        driverName: driver.name,
+                        lapTime: lap.lapTime
+                    };
+                }
+
+            });
         });
-    });
 
-    return fastest;
-}
+        return fastest;
+    }
 
 function formatTime(ms) {
     if (ms === null || ms === undefined || !Number.isFinite(ms)) {
