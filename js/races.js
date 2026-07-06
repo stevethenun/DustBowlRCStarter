@@ -222,14 +222,14 @@ function renderLeaderboard(standings) {
 }
 
 function renderLapTimes(standings) {
+
     if (!standings.length) {
-        const lapRows = driver.laps
-            .filter(lap => lap.lapNumber > 1)
-            .map(lap => {
+        lapTimes.innerHTML = "No lap data found.";
         return;
     }
 
     renderSingleDriverLapTimes(standings[0]);
+
 }
 
 function renderSingleDriverLapTimes(driver) {
@@ -267,35 +267,30 @@ function renderSingleDriverLapTimes(driver) {
 }
 
     function findFastestLap(standings) {
-
         let fastest = null;
 
         standings.forEach(driver => {
-
             driver.laps.forEach(lap => {
 
-                // Ignore the launch lap
-                if (lap.lapNumber === 1)
+                if (lap.lapNumber === 1) {
                     return;
+                }
 
-                if (lap.lapTime <= 0)
+                if (lap.lapTime <= 0) {
                     return;
+                }
 
                 if (!fastest || lap.lapTime < fastest.lapTime) {
-
                     fastest = {
                         driverName: driver.name,
                         lapTime: lap.lapTime
                     };
-
                 }
 
             });
-
         });
 
         return fastest;
-
     }
 
 function formatTime(ms) {
