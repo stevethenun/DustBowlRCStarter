@@ -1,0 +1,148 @@
+{
+  "deviceName": "pa2q",
+  "version": "2.12",
+  "deviceUuid": "485871da-4cfb-4d24-8a72-cc0f6cc576ec",
+  "documentType": "com.gyfx.LapMonitor.raceJsonData",
+  "races": [
+    {
+      "name": "Merica2502wd",
+      "extraTime": 60000,
+      "info": "",
+      "uuid": "7ee81120-ff54-4883-ad0e-6e769cf58d8b",
+      "date": "2026-07-04T17:01:24.753-05:00",
+      "duration": 5,
+      "durationType": "laps",
+      "minLapTime": 32000,
+      "kind": "race",
+      "drivers": [
+        {
+          "kind": "driver",
+          "name": "gearhead ",
+          "driverUuid": "8deab6b4-77c5-4e95-8901-0f5cbf9a9968",
+          "transponderId": 34,
+          "laps": [
+            {
+              "endTimestamp": 261850,
+              "lapId": 17,
+              "kind": "normal"
+            },
+            {
+              "endTimestamp": 215420,
+              "lapId": 15,
+              "kind": "normal"
+            },
+            {
+              "endTimestamp": 165940,
+              "lapId": 12,
+              "kind": "normal"
+            },
+            {
+              "endTimestamp": 104780,
+              "lapId": 8,
+              "kind": "normal"
+            },
+            {
+              "endTimestamp": 57260,
+              "lapId": 5,
+              "kind": "normal"
+            },
+            {
+              "endTimestamp": 2060,
+              "lapId": 2,
+              "kind": "normal"
+            }
+          ]
+        },
+        {
+          "kind": "driver",
+          "name": "mechtim ",
+          "driverUuid": "dfea2c4d-fc0b-4746-9af3-de32922848e0",
+          "transponderId": 75,
+          "laps": [
+            {
+              "endTimestamp": 286870,
+              "lapId": 19,
+              "kind": "normal"
+            },
+            {
+              "endTimestamp": 231150,
+              "lapId": 16,
+              "kind": "normal"
+            },
+            {
+              "endTimestamp": 184580,
+              "lapId": 13,
+              "kind": "normal"
+            },
+            {
+              "endTimestamp": 140600,
+              "lapId": 10,
+              "kind": "normal"
+            },
+            {
+              "endTimestamp": 84640,
+              "lapId": 7,
+              "kind": "normal"
+            },
+            {
+              "endTimestamp": 3920,
+              "lapId": 4,
+              "kind": "normal"
+            }
+          ]
+        },
+        {
+          "kind": "driver",
+          "name": "dilby",
+          "driverUuid": "754a5f7e-6afc-4c1e-b236-8f166695c00e",
+          "transponderId": 39,
+          "laps": [
+            {
+              "endTimestamp": 276040,
+              "lapId": 18,
+              "kind": "normal"
+            },
+            {
+              "endTimestamp": 165890,
+              "lapId": 11,
+              "kind": "normal"
+            },
+            {
+              "endTimestamp": 117830,
+              "lapId": 9,
+              "kind": "normal"
+            },
+            {
+              "endTimestamp": 62140,
+              "lapId": 6,
+              "kind": "normal"
+            },
+            {
+              "endTimestamp": 1700,
+              "lapId": 1,
+              "kind": "normal"
+            }
+          ]
+        },
+        {
+          "kind": "driver",
+          "name": "Walter ",
+          "driverUuid": "f1bd0219-1e64-466b-a167-e627663ab639",
+          "transponderId": 65,
+          "laps": [
+            {
+              "endTimestamp": 196600,
+              "lapId": 14,
+              "kind": "normal"
+            },
+            {
+              "endTimestamp": 2500,
+              "lapId": 3,
+              "kind": "normal"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
