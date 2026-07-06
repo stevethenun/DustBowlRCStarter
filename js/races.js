@@ -339,10 +339,22 @@ function cleanName(name) {
 }
 
 function getPositionText(position) {
-    if (position === 1) return "?? 1";
-    if (position === 2) return "?? 2";
-    if (position === 3) return "?? 3";
-    return position;
+
+    switch (position) {
+
+        case 1:
+            return "1st";
+
+        case 2:
+            return "2nd";
+
+        case 3:
+            return "3rd";
+
+        default:
+            return position;
+    }
+
 }
 
 function escapeHtml(value) {
